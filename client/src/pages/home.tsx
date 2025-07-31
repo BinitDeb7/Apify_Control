@@ -4,6 +4,7 @@ import { AuthPanel } from "@/components/auth-panel";
 import { ActorGrid } from "@/components/actor-grid";
 import { SchemaForm } from "@/components/schema-form";
 import { ExecutionResults } from "@/components/execution-results";
+import { HelpGuide } from "@/components/help-guide";
 import { Shield, HelpCircle, Bot } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { api, getAuthToken } from "@/lib/api";
@@ -28,6 +29,7 @@ export default function Home() {
   const [authData, setAuthData] = useState<AuthData | null>(null);
   const [selectedActor, setSelectedActor] = useState<any>(null);
   const [currentExecutionId, setCurrentExecutionId] = useState<string | null>(null);
+  const [showHelpGuide, setShowHelpGuide] = useState(false);
 
   const { data: actorsData, isLoading: actorsLoading } = useQuery({
     queryKey: ['/api/actors'],
@@ -74,7 +76,12 @@ export default function Home() {
                 <Shield className="text-green-500 h-4 w-4" />
                 <span>Secure API Connection</span>
               </div>
-              <Button variant="ghost" size="sm" className="text-slate-400 hover:text-slate-600">
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                className="text-slate-400 hover:text-slate-600"
+                onClick={() => setShowHelpGuide(true)}
+              >
                 <HelpCircle className="h-4 w-4" />
               </Button>
             </div>
@@ -122,6 +129,12 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      {/* Help Guide Modal */}
+      <HelpGuide 
+        isOpen={showHelpGuide} 
+        onClose={() => setShowHelpGuide(false)} 
+      />
     </div>
   );
 }

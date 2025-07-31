@@ -94,7 +94,15 @@ export function AuthPanel({ onAuth, isAuthenticated, userName }: AuthPanelProps)
               </div>
               <p className="text-xs text-muted-foreground flex items-center">
                 <span className="mr-1">ℹ️</span>
-                Find your API key in Apify Console
+                Find your API key in{" "}
+                <a 
+                  href="https://console.apify.com/settings/integrations" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline ml-1"
+                >
+                  Apify Console
+                </a>
               </p>
             </div>
 
@@ -126,9 +134,25 @@ export function AuthPanel({ onAuth, isAuthenticated, userName }: AuthPanelProps)
         )}
 
         {!isAuthenticated && (
-          <div className="flex items-center space-x-2 text-sm text-muted-foreground">
-            <Shield className="h-4 w-4 text-green-500" />
-            <span>Secure API Connection</span>
+          <div className="space-y-3">
+            <div className="flex items-center space-x-2 text-sm text-muted-foreground">
+              <Shield className="h-4 w-4 text-green-500" />
+              <span>Secure API Connection</span>
+            </div>
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+              <p className="text-xs text-blue-700">
+                <strong>New to Apify?</strong> Create a free account at{" "}
+                <a 
+                  href="https://console.apify.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:underline font-medium"
+                >
+                  console.apify.com
+                </a>{" "}
+                to get started with web scraping and automation.
+              </p>
+            </div>
           </div>
         )}
       </CardContent>
